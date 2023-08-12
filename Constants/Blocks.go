@@ -2,6 +2,7 @@ package Constants
 
 // LogicGateType describes a logic gate type (wow). Use constants in Constants package to specify a logic gate type
 type LogicGateType int
+type PartTier int
 
 const (
 	AndLogicGate  LogicGateType = 0
@@ -10,6 +11,12 @@ const (
 	NandLogicGate LogicGateType = 3
 	NorLogicGate  LogicGateType = 4
 	NXorLogicGate LogicGateType = 5
+
+	Tier1 PartTier = 1
+	Tier2 PartTier = 2
+	Tier3 PartTier = 3
+	Tier4 PartTier = 4
+	Tier5 PartTier = 5
 )
 
 // Blocks contains ShapeID-s of few blocks from scrap mechanic
@@ -59,13 +66,22 @@ var Blocks = map[string]string{
 	"Insulation Block":      "9be6047c-3d44-44db-b4b9-9bcf8a9aab20",
 	"Carpet Block":          "febce8a6-6c05-4e5d-803b-dfa930286944",
 	"Painted Wall Block":    "e981c337-1c8a-449c-8602-1dd990cbba3a",
-	"Square Mesh Block":     "b4fa180c-2111-4339-b6fd-aed900b57093", // Whatever it is
+	"Square Mesh Block":     "b4fa180c-2111-4339-b6fd-aed900b57093",
 	"Restroom Block":        "920b40c8-6dfc-42e7-84e1-d7e7e73128f6",
 	"Diamond Plate Block":   "f7d4bfed-1093-49b9-be32-394c872a1ef4",
 	"Spaceship Floor Block": "4ad97d49-c8a5-47f3-ace3-d56ba3affe50",
 	"Sand Block":            "c56700d9-bbe5-4b17-95ed-cef05bd8be1b",
 
 	"Logic Gate": "9f0f56e8-2c31-4d83-996c-d00a9b296c3f",
+	"Sensor 5":   "20dcd41c-0a11-4668-9b00-97f278ce21af",
+	"Sensor 4":   "de018bc6-1db5-492c-bfec-045e63f9d64b",
+	"Sensor 3":   "90fc3603-3544-4254-97ef-ea6723510961",
+	"Sensor 2":   "cf46678b-c947-4267-ba85-f66930f5faa4",
+	"Sensor 1":   "1d4793af-cb66-4628-804a-9d7404712643",
+	"Timer":      "8f7fd0e7-c46e-4944-a414-7ce2437bb30f",
+	"Spud Gun":   "1e8d93a4-506b-470d-9ada-9c0a321e2db5",
+	"Switch":     "7cf717d7-d167-4f2d-a6e7-6b2c70aa3986",
+	"Button":     "0229f59d-1ba3-446a-8f9c-df8b0f816e51",
 }
 
 // DefaultColors contains base colors of few blocks from scrap mechanic

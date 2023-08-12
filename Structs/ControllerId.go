@@ -4,7 +4,3 @@ package Structs
 type ControllerId struct {
 	Id int `json:"id"`
 }
-
-func GetId(block Block) ControllerId {
-	return ControllerId{block.Controller.Id}
-}

@@ -26,7 +26,7 @@ func (body *Body) AddBlocks(blocks []Block) {
 // If there was a block to remove, true is returned, otherwise function returns false
 func (body *Body) RemoveBlock(block Block) bool {
 	for i := 0; i < len(body.Children); i++ {
-		if body.Children[i].Controller.Id == block.Controller.Id {
+		if body.Children[i].Controller.GetId() == block.Controller.GetId() {
 			body.Children = append(body.Children[:i], body.Children[i+1:]...)
 			return true
 		}
@@ -46,4 +46,23 @@ func (body *Body) RemoveBlocks(blocks []Block) bool {
 	}
 
 	return removedAny
+}
+
+// Contains tests if given block is present in the body
+func (body *Body) Contains(block Block) bool {
+	for i := 0; i < len(body.Children); i++ {
+		if body.Children[i].Controller.GetId() == block.Controller.GetId() {
+			return true
+		}
+	}
+	return false
+}
+
+// Join joins two bodies. Duplicate blocks are ignored
+func (body *Body) Join(secondBody *Body) {
+	for i := 0; i < len(secondBody.Children); i++ {
+		if !body.Contains(secondBody.Children[i]) {
+			body.AddBlock(secondBody.Children[i])
+		}
+	}
 }
