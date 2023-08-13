@@ -1,24 +1,5 @@
 package Constants
 
-// LogicGateType describes a logic gate type (wow). Use constants in Constants package to specify a logic gate type
-type LogicGateType int
-type PartTier int
-
-const (
-	AndLogicGate  LogicGateType = 0
-	OrLogicGate   LogicGateType = 1
-	XorLogicGate  LogicGateType = 2
-	NandLogicGate LogicGateType = 3
-	NorLogicGate  LogicGateType = 4
-	NXorLogicGate LogicGateType = 5
-
-	Tier1 PartTier = 1
-	Tier2 PartTier = 2
-	Tier3 PartTier = 3
-	Tier4 PartTier = 4
-	Tier5 PartTier = 5
-)
-
 // Blocks contains ShapeID-s of few blocks from scrap mechanic
 var Blocks = map[string]string{
 	// Concrete

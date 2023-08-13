@@ -2,6 +2,8 @@ package Structs
 
 import (
 	"ScrapBlueprint/Constants"
+	"ScrapBlueprint/Constants/GateType"
+	"ScrapBlueprint/Constants/PartTier"
 	"fmt"
 )
 
@@ -21,6 +23,8 @@ type Block struct {
 	XAxis int `json:"xaxis"`
 	// Block Z-axis rotation in 1/4 turns
 	ZAxis int `json:"zaxis"`
+	// Attributes of block used only during generation. These are not saved into the blueprint
+	Attributes *CustomAttributes
 }
 
 // MakeBlock creates a block with given shapeId, color and position
@@ -40,6 +44,7 @@ func MakeBlock(shapeId, color string, position Position) Block {
 		ShapeId:    shapeId,
 		XAxis:      0,
 		ZAxis:      0,
+		Attributes: NewCustomAttributes(),
 	}
 }
 
@@ -60,11 +65,12 @@ func MakeBlockWithRotation(shapeId, color string, position Position, xRotation, 
 		ShapeId:    shapeId,
 		XAxis:      xRotation,
 		ZAxis:      zRotation,
+		Attributes: NewCustomAttributes(),
 	}
 }
 
 // MakeLogicGate creates a logic gate with given color, position and gate type
-func MakeLogicGate(color string, position Position, gateType Constants.LogicGateType) Block {
+func MakeLogicGate(color string, position Position, gateType GateType.LogicGateType) Block {
 	controller :=
 		Controller(&BasicController{
 			Active:      false,
@@ -80,10 +86,11 @@ func MakeLogicGate(color string, position Position, gateType Constants.LogicGate
 		ShapeId:    Constants.Blocks["Logic Gate"],
 		XAxis:      0,
 		ZAxis:      0,
+		Attributes: NewCustomAttributes(),
 	}
 }
 
-func MakeSensor(color string, position Position, sensorTier Constants.PartTier, buttonMode bool, colorMode bool, detectColor string, sensorRange int, audioEnabled bool) Block {
+func MakeSensor(color string, position Position, sensorTier PartTier.PartTier, buttonMode bool, colorMode bool, detectColor string, sensorRange int, audioEnabled bool) Block {
 	controller :=
 		Controller(&SensorController{
 			AudioEnabled: audioEnabled,
@@ -104,6 +111,7 @@ func MakeSensor(color string, position Position, sensorTier Constants.PartTier, 
 		ShapeId:    Constants.Blocks[fmt.Sprintf("Sensor %d", int(sensorTier))],
 		XAxis:      0,
 		ZAxis:      0,
+		Attributes: NewCustomAttributes(),
 	}
 }
 
@@ -134,6 +142,7 @@ func MakeBlockWithMode(shapeId, color string, position Position, mode int) Block
 		ShapeId:    shapeId,
 		XAxis:      0,
 		ZAxis:      0,
+		Attributes: NewCustomAttributes(),
 	}
 }
 
@@ -154,6 +163,7 @@ func MakeBlockVolume(shapeId, color string, position Position, bounds Position) 
 		ShapeId:    shapeId,
 		XAxis:      0,
 		ZAxis:      0,
+		Attributes: NewCustomAttributes(),
 	}
 }
 

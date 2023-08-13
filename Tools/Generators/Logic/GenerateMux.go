@@ -2,13 +2,14 @@ package Logic
 
 import (
 	"ScrapBlueprint/Constants"
+	"ScrapBlueprint/Constants/GateType"
 	"ScrapBlueprint/Structs"
 	"math"
 )
 
 func GenerateMultiplexor(indexBitWidth int, position Structs.Position) Structs.Body {
-	inputNumber := GenerateBinaryNumberInput(Structs.Position{X: position.X, Y: position.Y + 1, Z: position.Z}, indexBitWidth)
-	inputInverter := GenerateBinaryNumberGates(position, indexBitWidth, Constants.NorLogicGate)
+	inputNumber := GenerateBinaryNumberInput(Structs.Position{X: position.X, Y: position.Y + 1, Z: position.Z}, indexBitWidth, 0)
+	inputInverter := GenerateBinaryNumberGates(position, indexBitWidth, -1, GateType.NorLogicGate)
 	for i := 0; i < indexBitWidth; i++ {
 		inputNumber.Children[i].AddConnection(inputInverter.Children[i])
 	}
@@ -19,7 +20,9 @@ func GenerateMultiplexor(indexBitWidth int, position Structs.Position) Structs.B
 			X: position.X,
 			Y: position.Y,
 			Z: position.Z + i + 1,
-		}, Constants.AndLogicGate)
+		}, GateType.AndLogicGate)
+		gate.Attributes.SetInt("BitIndex", i)
+		gate.Attributes.SetInt("InputIndex", 1)
 		muxGates.AddBlock(gate)
 	}
 	stride := muxGatesCount / 2
